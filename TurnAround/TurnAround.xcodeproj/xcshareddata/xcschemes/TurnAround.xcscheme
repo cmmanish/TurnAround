@@ -28,26 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "480162E91E2471D200AB5E0E"
-               BuildableName = "TurnAroundTests.xctest"
-               BlueprintName = "TurnAroundTests"
-               ReferencedContainer = "container:TurnAround.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "480162F41E2471D200AB5E0E"
-               BuildableName = "TurnAroundUITests.xctest"
-               BlueprintName = "TurnAroundUITests"
-               ReferencedContainer = "container:TurnAround.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
