@@ -11,7 +11,7 @@ import UIKit
 
 public class ViewController: UIViewController {
     
-    
+    @IBOutlet weak var timeCounterLabel: UILabel!
     @IBOutlet weak var countDownLabel: UILabel!
     
     public var count = 300
@@ -19,13 +19,22 @@ public class ViewController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        //        updateText()
+        displayTimeCounter()
+        
     }
     
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    public func displayTimeCounter() {
+        
+        let date = NSDate()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss"
+        timeCounterLabel.text = formatter.string(from: date as Date)
+    
     }
     
     @IBAction func start(_ sender: UIButton) {
@@ -42,7 +51,7 @@ public class ViewController: UIViewController {
     }
     
     // called every time interval from the timer
-    func timerAction() {
+    public func timerAction() {
         if (count > 0){
             let minutes = String(count / 60)
             let seconds = String(count % 60)
