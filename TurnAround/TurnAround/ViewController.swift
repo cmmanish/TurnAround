@@ -13,7 +13,7 @@ public class ViewController: UIViewController {
     
     @IBOutlet weak var timeCounterLabel: UILabel!
     @IBOutlet weak var countDownLabel: UILabel!
-    
+    let dateFormatter = DateFormatter()
     public var count = 300
     var timer = Timer()
     
@@ -30,25 +30,16 @@ public class ViewController: UIViewController {
     
     public func displayTimeCounter() {
         
-        let date = NSDate()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss"
-        timeCounterLabel.text = formatter.string(from: date as Date)
-    
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .long
+        dateFormatter.dateFormat = "HH:mm:ss"
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateLabel), userInfo: nil, repeats:true);
     }
     
-    @IBAction func start(_ sender: UIButton) {
-        timer.invalidate() // just in case this button is tapped multiple times
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+    func updateLabel() -> Void {
+        timeCounterLabel.text = dateFormatter.string(from: Date());
     }
     
-    @IBAction func reset(_ sender: UIButton) {
-        timer.invalidate()
-        count = 300
-        let minutes = String(count / 60)
-        let seconds = String(count % 60)
-        countDownLabel.text = minutes + ":" + seconds
-    }
     
     // called every time interval from the timer
     public func timerAction() {
@@ -59,5 +50,21 @@ public class ViewController: UIViewController {
         }
         count = count - 1
     }
+    @IBAction func start(_ sender: UIButton) {
+        timer.invalidate() // just in case this button is tapped multiple times
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+    }
+    
+    @IBAction func reset(_ sender: UIButton) {
+        timer.invalidate()
+        count = 300
+        let minutes = String(count / 60)
+
+        let seconds = String(count % 60)
+        countDownLabel.text = minutes + ":" + seconds
+        
+    }
+    
+    
 }
 
